@@ -8,14 +8,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Debug - List files
-        run: dir
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -28,8 +23,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --name FolderFlow main.py
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: FolderFlow-Windows
           path: dist/FolderFlow.exe
@@ -38,14 +32,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Debug - List files
-        run: ls -la
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -58,8 +47,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --name FolderFlow main.py
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: FolderFlow-Mac
           path: dist/FolderFlow.app
