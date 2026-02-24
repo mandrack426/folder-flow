@@ -1,9 +1,6 @@
 name: Build FolderFlow
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -11,8 +8,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Debug - List files
+        run: dir
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -28,7 +28,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --name FolderFlow main.py
 
-      - name: Upload Windows Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: FolderFlow-Windows
@@ -38,8 +38,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Debug - List files
+        run: ls -la
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -55,7 +58,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --name FolderFlow main.py
 
-      - name: Upload Mac Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: FolderFlow-Mac
